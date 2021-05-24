@@ -1,0 +1,17 @@
+//Estos estilos son los contenedos de la ListView de las imagenes.
+.wrapper {
+    max-width: 100%;
+    display: flex;
+    overflow-x: auto;
+}
+
+.wrapper::-webkit-scrollbar {
+    width: 0;
+}
+
+.wrapper .item {
+    min-width: 360px;
+    height: 100%;
+    line-height: 100%;
+}
+

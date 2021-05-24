@@ -1,0 +1,19 @@
+//Estos estilos son para las tarjetas de los departamentos.
+//Donde dentro de la tarjeta va una imagen, junto con el titulo y demás datos.
+//Tal vez no se usen del todo, pero me servirán para cuando quiera cambiar los datos mostrados en la tarjeta.
+.titulo {
+    font-weight: normal;
+    color: #ffffff;
+    width: max-content;
+}
+
+.distancia {
+    font-weight: normal;
+    color: #ffffff;
+}
+
+.descripcion {
+    position: absolute;
+    left: 0%;
+    bottom: 0%;
+}

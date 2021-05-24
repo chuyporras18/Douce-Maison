@@ -1,0 +1,104 @@
+//Estos estilos son para el ListView del contenedor de las imagenes.
+//Tengo también una animación que se dejó de usar, pero no la quiero borrar.
+.slider {
+    width: 100%;
+    margin: auto;
+    overflow: hidden;
+}
+
+.wrapper {
+    max-width: 100%;
+    display: flex;
+    overflow-x: auto;
+}
+
+.wrapper::-webkit-scrollbar {
+    width: 0;
+}
+
+.wrapper .item {
+    min-width: 100%;
+    height: 100%;
+    line-height: 100%;
+}
+
+.slider ul {
+    padding: 0;
+    display: flex;
+    width: 1000%;
+    animation: cambio 50s infinite alternate;
+    animation-timing-function: ease-in;
+}
+
+.slider li {
+    list-style: none;
+    width: 100%;
+}
+
+.slider ion-img {
+    width: 360px;
+    height: 100%;
+}
+
+@keyframes cambio {
+    0% {
+        margin-left: 0;
+    }
+    5% {
+        margin-left: 0;
+    }
+    10% {
+        margin-left: -100%;
+    }
+    15% {
+        margin-left: -100%;
+    }
+    20% {
+        margin-left: -200%;
+    }
+    25% {
+        margin-left: -200%;
+    }
+    30% {
+        margin-left: -300%;
+    }
+    35% {
+        margin-left: -300%;
+    }
+    40% {
+        margin-left: -400%;
+    }
+    45% {
+        margin-left: -400%;
+    }
+    50% {
+        margin-left: -500%;
+    }
+    55% {
+        margin-left: -500%;
+    }
+    60% {
+        margin-left: -600%;
+    }
+    65% {
+        margin-left: -600%;
+    }
+    70% {
+        margin-left: -700%;
+    }
+    75% {
+        margin-left: -700%;
+    }
+    80% {
+        margin-left: -800%;
+    }
+    85% {
+        margin-left: -800%;
+    }
+    90% {
+        margin-left: -900%;
+    }
+    100% {
+        margin-left: -900%;
+    }
+}

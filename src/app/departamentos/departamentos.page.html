@@ -1,0 +1,30 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-menu-button menu="menu1" (click)="update()"></ion-menu-button>
+        </ion-buttons>
+        <ion-title>Departamentos</ion-title>
+        <ion-buttons slot="primary">
+            <ion-button (click)="addDepartamento()">
+                <ion-icon name="add" slot="icon-only"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<ion-searchbar animated (ionChange)="buscar($event)"></ion-searchbar>
+<ion-content>
+    <h1 *ngIf="departamentos.length == 0" align="center">No hay departamentos publicados.</h1>
+    <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+        <ion-refresher-content></ion-refresher-content>
+    </ion-refresher>
+    <div align="center">
+        <ion-card style="vertical-align: middle; background-color: black;"
+            *ngFor="let depa of departamentos | filtro:textoBuscar: 'titulo'" [routerLink]="['./',depa.id]">
+            <ion-img style="object-fit: cover;" [src]="depa.imagenes[0]"></ion-img>
+            <div class="titulo">{{depa.ubicacion}}</div>
+            <div class="distancia">Precio ${{depa.precio}}</div>
+            <p *ngIf="depa.userId == this.userId" >TU PROPIEDAD!</p>
+        </ion-card>
+    </div>
+</ion-content>

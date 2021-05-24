@@ -1,0 +1,207 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button defaultHref="/departamentos"></ion-back-button>
+        </ion-buttons>
+        <ion-title>{{departamento.titulo}}</ion-title>
+        <ion-buttons slot="primary" *ngIf="this.userId === this.departamento.userId">
+            <ion-button (click)="onDeleteDepartamento(departamento.id)">
+                <ion-icon name="trash" slot="icon-only"></ion-icon>
+            </ion-button>
+            <ion-button (click)="onEditDepartamento()">
+                <ion-icon name="pencil-outline" slot="icon-only"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <div class="wrapper">
+        <div class="item" *ngFor="let imagen of departamento.imagenes">
+            <ion-img [src]="imagen"></ion-img>
+        </div>
+    </div>
+    <ion-grid>
+        <ion-row>
+            <ion-col>
+                <div *ngIf="!isEditing">
+                    <div class="modal-content">
+                        <div class="modal-body">
+                            <ion-list name="list">
+                                <div align="center" *ngIf="userId !== departamento.userId">
+                                    <ion-button slot="primary" class="ion-text-center" (click)="agendarVisita()">
+                                        <ion-icon name="calendar-outline" slot="icon-only" style="padding-right: 10px;">
+                                        </ion-icon>
+                                        <ion-text>Rentar</ion-text>
+                                    </ion-button>
+                                    <br />
+                                </div>
+                                <h1 class="ion-text-center">Información del Departamento</h1>
+                                <ion-item>
+                                    <ion-label>
+                                        Título:
+                                        <ion-input [(ngModel)]="departamento.titulo" readonly></ion-input>
+                                    </ion-label>
+                                </ion-item>
+                                <ion-item>
+                                    <ion-label>
+                                        Precio:
+                                        <ion-input [(ngModel)]="'$'+departamento.precio" readonly></ion-input>
+                                    </ion-label>
+                                </ion-item>
+                                <ion-item>
+                                    <ion-label>
+                                        Habitaciones:
+                                        <ion-input [(ngModel)]="departamento.habitaciones" readonly></ion-input>
+                                    </ion-label>
+                                </ion-item>
+                                <ion-item>
+                                    <ion-label>
+                                        Baños:
+                                        <ion-input [(ngModel)]="departamento.banos" readonly></ion-input>
+                                    </ion-label>
+                                </ion-item>
+                                <ion-item>
+                                    <ion-label>
+                                        Ubicación:
+                                        <ion-input [(ngModel)]="departamento.ubicacion" readonly></ion-input>
+                                    </ion-label>
+                                </ion-item>
+                                <div class="form-group">
+                                    <label>Descripción</label>
+                                    <textarea id="textarea" type="text" class="form-control"
+                                        [(ngModel)]="departamento.condicion" readonly></textarea>
+                                    <p *ngIf="!isExpanded"><a [routerLink]="" (click)="autogrow()">Mostrar más... </a>
+                                    </p>
+                                    <br />
+                                </div>
+                                <h1 class="ion-text-center">Información de Contacto</h1>
+                                <ion-item>
+                                    <ion-label>
+                                        Nombre:
+                                        <ion-input [(ngModel)]="departamento.nombre" readonly></ion-input>
+                                    </ion-label>
+                                </ion-item>
+                                <ion-item>
+                                    <ion-label>
+                                        Teléfono:
+                                        <ion-input [(ngModel)]="'+52'+departamento.telefono" readonly></ion-input>
+                                    </ion-label>
+                                </ion-item>
+                                <ion-item>
+                                    <ion-label>
+                                        Correo:
+                                        <ion-input [(ngModel)]="departamento.correo" readonly></ion-input>
+                                    </ion-label>
+                                </ion-item>
+                            </ion-list>
+                            <div align="center" *ngIf="userId !== departamento.userId">
+                                <ion-button [href]="'tel:' + departamento.telefono" style="padding-right: 10px;">
+                                    <ion-icon name="call-outline" slot="icon-only" style="padding-right: 10px;">
+                                    </ion-icon>
+                                    <ion-text>Llamar</ion-text>
+                                </ion-button>
+                                <ion-button style="padding-left: 10px;"
+                                    href="mailto:{{departamento.correo}}?subject=Rentar Departamento&body=Hola, me interesa este departamento que vi en Douce Maison y quiero que me contacten. Gracias. Datos del departamento: Título: '{{departamento.titulo}}', Precio: '{{departamento.precio}}', Ubicación: '{{departamento.ubicacion}}'">
+                                    <ion-icon name="mail" slot="icon-only" style="padding-right: 10px;">
+                                    </ion-icon>
+                                    <ion-text>Email</ion-text>
+                                </ion-button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div *ngIf="isEditing">
+                    <div class="modal-content">
+                        <div class="modal-body">
+                            <form [formGroup]="dataDepa" (ngSubmit)="editarDepartamento()">
+                                <ion-grid>
+                                    <ion-row>
+                                        <ion-col>
+                                            <ion-list>
+                                                <div align="center">Información del Departamento</div>
+                                                <ion-item>
+                                                    <ion-label>Nombre del Departamento
+                                                        <ion-input type="text" formControlName="titulo"
+                                                            [(ngModel)]="departamento.titulo"></ion-input>
+                                                    </ion-label>
+                                                </ion-item>
+
+                                                <ion-item>
+                                                    <ion-label>Precio $
+                                                        <ion-input type="number" formControlName="precio"
+                                                            [(ngModel)]="departamento.precio"></ion-input>
+                                                    </ion-label>
+                                                </ion-item>
+                                                <ion-item>
+                                                    <ion-label>Habitaciones
+                                                        <ion-input type="number" formControlName="habitaciones"
+                                                            [(ngModel)]="departamento.habitaciones"></ion-input>
+                                                    </ion-label>
+                                                </ion-item>
+                                                <ion-item>
+                                                    <ion-label>Baños
+                                                        <ion-input type="number" formControlName="baños"
+                                                            [(ngModel)]="departamento.banos"></ion-input>
+                                                    </ion-label>
+                                                </ion-item>
+                                                <ion-item>
+                                                    <ion-label>Ubicación
+                                                        <ion-input type="text" formControlName="ubicacion"
+                                                            [(ngModel)]="departamento.ubicacion"></ion-input>
+                                                    </ion-label>
+                                                </ion-item>
+                                                <div class="form-group">
+                                                    <label>Descripción</label>
+                                                    <textarea id="textarea" (keyup)="autogrow()" type="text"
+                                                        class="form-control" formControlName="condicion"
+                                                        [(ngModel)]="departamento.condicion"></textarea>
+                                                    <p *ngIf="!isExpanded"><a [routerLink]=""
+                                                            (click)="autogrow()">Mostrar
+                                                            más...
+                                                        </a></p>
+                                                    <br />
+                                                </div>
+                                                <div align="center">Información del Departamento</div>
+                                                <ion-item>
+                                                    <ion-label>Nombre
+                                                        <ion-input type="text" formControlName="nombre"
+                                                            [(ngModel)]="departamento.nombre"></ion-input>
+                                                    </ion-label>
+                                                </ion-item>
+                                                <ion-item>
+                                                    <ion-label>Teléfono
+                                                        <ion-input type="number" formControlName="telefono"
+                                                            [(ngModel)]="departamento.telefono">
+                                                        </ion-input>
+                                                    </ion-label>
+                                                </ion-item>
+                                                <ion-item>
+                                                    <ion-label>Correo
+                                                        <ion-input type="text" [(ngModel)]="departamento.correo"
+                                                            formControlName="correo">
+                                                        </ion-input>
+                                                    </ion-label>
+                                                </ion-item>
+                                            </ion-list>
+                                            <div align="center">
+                                                <p></p>
+                                                <ion-button slot="primary" class="ion-text-center" type="submit"
+                                                    [disabled]="dataDepa.invalid">
+                                                    <ion-icon name="checkmark" slot="icon-only"
+                                                        style="padding-right: 10px;">
+                                                    </ion-icon>
+                                                    <ion-text>Guardar</ion-text>
+                                                </ion-button>
+                                            </div>
+                                        </ion-col>
+                                    </ion-row>
+                                </ion-grid>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+</ion-content>

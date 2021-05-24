@@ -1,0 +1,41 @@
+//Estos estilos son para el ListView del contenedor de las imagenes.
+//Tengo también una animación que se dejó de usar, pero no la quiero borrar.
+.slider {
+    width: 100%;
+    margin: auto;
+    overflow: hidden;
+}
+
+.wrapper {
+    max-width: 100%;
+    display: flex;
+    overflow-x: auto;
+}
+
+.wrapper::-webkit-scrollbar {
+    width: 0;
+}
+
+.wrapper .item {
+    min-width: 360px;
+    height: 100%;
+    line-height: 100%;
+}
+
+.slider ul {
+    padding: 0;
+    display: flex;
+    width: 1000%;
+    animation: cambio 50s infinite alternate;
+    animation-timing-function: ease-in;
+}
+
+.slider li {
+    list-style: none;
+    width: 100%;
+}
+
+.slider ion-img {
+    width: 360px;
+    height: 100%;
+}

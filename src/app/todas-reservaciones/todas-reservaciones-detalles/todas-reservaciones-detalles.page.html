@@ -1,0 +1,75 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button defaultHref="/todas-reservacion"></ion-back-button>
+        </ion-buttons>
+        <ion-title>{{reservacion.titulo}}</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <div class="wrapper">
+        <div class="item">
+            <ion-img [src]="reservacion.icono"></ion-img>
+        </div>
+    </div>
+    <ion-grid>
+        <ion-row>
+            <ion-col>
+                <div>
+                    <div class="modal-content">
+                        <div class="modal-body">
+                            <ion-list>
+                                <div align="center">Información de la Reservación</div>
+                                <ion-item>
+                                    <ion-label>
+                                        Nombre:
+                                        <ion-input [(ngModel)]="reservacion.nombre" readonly></ion-input>
+                                    </ion-label>
+                                </ion-item>
+                                <ion-item>
+                                    <ion-label>
+                                        Correo
+                                        <ion-input [(ngModel)]="reservacion.correo" readonly></ion-input>
+                                    </ion-label>
+                                </ion-item>
+                                <ion-item>
+                                    <ion-label>
+                                        Teléfono:
+                                        <ion-input [(ngModel)]="'52'+reservacion.telefono" readonly></ion-input>
+                                    </ion-label>
+                                </ion-item>
+                                <ion-item>
+                                    <ion-label>
+                                        Fecha Inicial:
+                                        <ion-input [(ngModel)]="reservacion.fechaI" readonly></ion-input>
+                                    </ion-label>
+                                </ion-item>
+                                <ion-item>
+                                    <ion-label>
+                                        Fecha Final:
+                                        <ion-input [(ngModel)]="reservacion.fechaF" readonly></ion-input>
+                                    </ion-label>
+                                </ion-item>
+                                <ion-item>
+                                    <ion-label>
+                                        Total:
+                                        <ion-input [(ngModel)]="'$'+reservacion.total" readonly></ion-input>
+                                    </ion-label>
+                                </ion-item>
+                            </ion-list>
+                            <div align="center">
+                                <ion-button [href]="'tel:' + reservacion.telefono"
+                                    *ngIf="!(this.LoginService.getUserId() === reservacion.userId)">
+                                    <ion-icon name="call-outline" slot="icon-only" style="padding-right: 10px;">
+                                    </ion-icon>
+                                    <ion-text>Contactar al cliente</ion-text>
+                                </ion-button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+</ion-content>

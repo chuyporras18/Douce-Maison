@@ -1,0 +1,8 @@
+{
+  "name": "proyecto app moviles",
+  "integrations": {
+    "capacitor": {},
+    "cordova": {}
+  },
+  "type": "angular"
+}

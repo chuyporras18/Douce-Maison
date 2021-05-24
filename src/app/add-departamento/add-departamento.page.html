@@ -1,0 +1,79 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button defaultHref="/departamentos"></ion-back-button>
+        </ion-buttons>
+        <ion-title>Añadir Departamento</ion-title>
+        <ion-buttons slot="primary">
+            <ion-button (click)="enviar()" [disabled]="dataDepa.invalid">
+                <ion-icon name="checkmark-circle-outline" slot="icon-only"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <div class="modal-content">
+        <div class="modal-body">
+            <form [formGroup]="dataDepa" (ngSubmit)="enviar()">
+                <ion-grid>
+                    <ion-row>
+                        <ion-col>
+                            <ion-list>
+                                <div align="center">Información del Departamento</div>
+                                <ion-item>
+                                    <ion-input placeholder="Nombre del Departamento" type="text"
+                                        formControlName="titulo"></ion-input>
+                                </ion-item>
+                                <ion-item>
+                                    <ion-input placeholder="Precio $" type="number" formControlName="precio">
+                                    </ion-input>
+                                </ion-item>
+                                <ion-item>
+                                    <ion-input placeholder="Habitaciones" type="number" formControlName="habitaciones">
+                                    </ion-input>
+                                </ion-item>
+                                <ion-item>
+                                    <ion-input placeholder="Baños" type="number" formControlName="baños"></ion-input>
+                                </ion-item>
+                                <ion-item>
+                                    <ion-input placeholder="Ubicación" type="text" formControlName="ubicacion">
+                                    </ion-input>
+                                </ion-item>
+                                <ion-item>
+                                    <ion-input placeholder="Descripción" type="text" formControlName="condicion">
+                                    </ion-input>
+                                </ion-item>
+                                <br />
+                                <div align="center">Información de Contacto</div>
+                                <ion-item>
+                                    <ion-input placeholder="Nombre" type="text" formControlName="nombre"></ion-input>
+                                </ion-item>
+                                <ion-item>
+                                    <ion-input placeholder="Teléfono" type="number" formControlName="telefono">
+                                    </ion-input>
+                                </ion-item>
+                            </ion-list>
+                            <div align="center">
+                               <br /> Imágenes <br />
+                                <ion-button (click)="addPhotoToGallery()" id="camara" [disabled]="isDisabled">
+                                    <ion-icon name="camera" style="padding-right: 10px;"></ion-icon>
+                                    <ion-text>Cámara</ion-text>
+                                </ion-button>
+                                <ion-button (click)="addFromGallery()" [disabled]="isDisabled">
+                                    <ion-icon name="cloud-upload" style="padding-right: 10px;"></ion-icon>
+                                    <ion-text>Galería</ion-text>
+                                </ion-button>
+                            </div>
+                            <div class="wrapper">
+                                <div class="item" *ngFor="let photo of photoService.photos; index as position">
+                                    <ion-img [src]="photo.webviewPath"></ion-img>
+                                </div>
+                            </div>
+                        </ion-col>
+                    </ion-row>
+                </ion-grid>
+            </form>
+        </div>
+    </div>
+</ion-content>
